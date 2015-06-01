@@ -104,13 +104,13 @@ function initialize() {
 	
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
-  map.setZoom(3);
-    
+  map.setOptions({zoom:3,maxZoom:3,minZoom:3});
 }
 
 function zoomOut()
 {
 	marker.setMap(null);
+	map.setOptions({maxZoom:map.getZoom(),minZoom:3});
 	smoothZoomOut(map,3,map.getZoom());
 }
 
@@ -143,13 +143,14 @@ function smoothZoomIn (map, max, cnt,marker_info) {
             google.maps.event.removeListener(z);
             smoothZoomIn(map, max, cnt + 1,marker_info);
         });
-        setTimeout(function(){ map.setZoom(cnt); }, 200); // 80ms is what I found to work well on my system -- it might not work well on all systems
+        setTimeout(function(){ map.setOptions({zoom:cnt,maxZoom:cnt,minZoom:cnt}); }, 200); // 80ms is what I found to work well on my system -- it might not work well on all systems
     }
 }  
 
 function smoothZoomOut (map, min, cnt) {
     if (cnt <= min) {
     		map.setOptions(mapOptions);
+    		map.setOptions({zoom:3,maxZoom:3,minZoom:3});
             return;
         }
     else {

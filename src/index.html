@@ -10,10 +10,26 @@
         margin: 0px;
         padding: 0px
       }
+      
+      #map-canvas {
+      	z-index:1;position:relative;display:block;
+      }
+      
+      #info-tile {
+      	background-color:rgba(173, 37, 182,0.6);
+      	position:absolute;display:block;
+      	left:5%;top:5%;
+      	width:20%;height:150px;
+      	z-index:10;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+      }
     </style>
     <link rel="stylesheet" href="animate.css" />
   </head>
   <body>
+  	<div id="info-tile"></div>
     <div id="map-canvas"></div>
   </body>
   
